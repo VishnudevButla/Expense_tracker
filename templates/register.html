@@ -1,0 +1,122 @@
+{%extends "layout.html"%}
+{%block title%}Register{%endblock%}
+{%block head%}
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to bottom, #2193b0, #6dd5ed);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Login Card Styling */
+    .login-card {
+        background: rgba(255, 255, 255, 0.5);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        width: 350px;
+        text-align: center;
+    }
+
+    .login-card h2 {
+        color: #191970;
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+    }
+
+    /* Form Group Styling */
+    .form-group {
+        margin-bottom: 1.2rem;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+        border-color: #5c9eda;
+        outline: none;
+        box-shadow: 0 0 8px rgba(92, 158, 218, 0.3);
+    }
+
+    /* Button Styling */
+    .btn {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 8px;
+        background-color: #088F8F;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #078c09;
+    }
+
+    /* Signup Link Styling */
+    .signup-link {
+        display: inline-block;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: #5c9eda;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .signup-link:hover {
+        color: #417cb8;
+        text-decoration: underline;
+    }
+
+    /* Media Query for Responsiveness */
+    @media (max-width: 400px) {
+        .login-card {
+            width: 90%;
+            padding: 1.5rem;
+        }
+
+        .login-card h2 {
+            font-size: 1.5rem;
+        }
+
+        .form-group input, .btn {
+            font-size: 0.9rem;
+            padding: 0.6rem;
+        }
+    }
+    </style>
+{%endblock%}
+{%block body%}
+<div class="login-card">
+    <h2>Register</h2>
+    <form method = "POST" action="/register">
+        <div class="form-group">
+            <input type="text" id="name" placeholder="Enter your name" name="name">
+        </div>
+        <div class="form-group">
+            <input type="email" id="email" placeholder="Enter your email" name="email">
+        </div>
+        <div class="form-group">
+            <input type="password" id="password" placeholder="Enter your password" name = "password">
+        </div>
+        <div class="form-group">
+            <input type="password" id="cpassword" placeholder="Confirm your password" name = "cpassword">
+        </div>
+        <button type="submit" class="btn">Register</button>
+    </form>
+</div>
+{%endblock%}

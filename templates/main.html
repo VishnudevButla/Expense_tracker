@@ -1,0 +1,280 @@
+{% extends "layout.html" %}
+{% block title %}Expense Tracker{% endblock %}
+{% block head %}
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to bottom right, #74ebd5, #acb6e5);
+        color: #333;
+        height: 100vh;
+        display: flex;
+
+        padding-top: 2rem;
+        box-sizing: border-box;
+    }
+
+    /* Heading Style */
+    h2 {
+        text-align: center;
+        color: #f1faee;
+        margin-right:2rem;
+        margin-left:2rem;
+        margin-top:15rem;
+    }
+    h3 {
+        text-align: center;
+        color: #f1faee;
+        margin-right:2rem;
+        margin-left:2rem;
+        margin-top:15rem;
+    }
+
+    /* Form Styling */
+    form {
+        background: rgba(255, 255, 255, 0.5);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        width: 400px;
+        margin: 0 auto;
+
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+    }
+    .form select{
+        width: 35%;
+        padding: 0.4rem;
+        font-size: .8rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .form-group input:focus {
+        border-color: #a8dadc;
+        outline: none;
+        box-shadow: 0 0 8px rgba(168, 218, 220, 0.3);
+    }
+
+    .btn {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        background-color: #457b9d;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .logoutform {
+        background: rgba(255, 255, 255, 0.5);
+        padding: 0.5rem;
+        border-radius: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        width: 180px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .logout {
+        width: 50%;
+        padding: 0.7rem;
+        font-size: 1rem;
+        background-color: #cca007;
+        color: white;
+        border-radius: 25px;
+        border: none;
+        transition: background-color 0.2s ease;
+    }
+
+    .logout:hover {
+        background-color: #d13607;
+    }
+
+    .btn:hover {
+        background-color: #1d3557;
+    }
+    .finalbtn{
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        background-color: #457b9d;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+    .finalbtn:hover{
+        background-color: green;
+    }
+    .main{
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center;
+        margin-top:1rem;
+    }
+
+    .tab{
+        flex-direction: column; /* Stack elements vertically */
+        align-items: right;
+    }
+    .dropdown{
+        margin-top:1rem;
+    }
+    /* Table Styling */
+    table {
+        width: 100%;
+        margin-top: 1rem;
+        margin-left:4rem;
+        border-collapse: collapse;
+        background: rgba(255, 255, 255, 0.6);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    table thead {
+        background-color: #457b9d;
+        color: #f1faee;
+        text-align: left;
+    }
+
+    table th,
+    table td {
+        padding: 2rem;
+        border-bottom: 1px solid #ddd;
+    }
+
+    table tbody tr:hover {
+        background-color: #f1faee;
+    }
+
+    table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    table tbody tr td[colspan="4"] {
+        text-align: center;
+        color: #888;
+        font-style: italic;
+        padding: 2rem 1rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 500px) {
+        form {
+            width: 100%;
+            padding: 1.5rem;
+        }
+
+        table {
+            font-size: 0.9rem;
+        }
+
+        table th,
+        table td {
+            padding: 0.8rem;
+        }
+    }
+    .logoutclass{
+        margin-top:1rem;
+    }
+</style>
+{% endblock %}
+{% block body %}
+
+<h2>Expense Tracker</h2>
+<h3>Hello {{ name }}</h3>
+<div class ="main">
+<form method="POST" action="/main">
+    <div class="form-group">
+        <input type="number" id="expno" placeholder="Expense number" name="no" step="1" required>
+    </div>
+    <div class="form-group">
+        <input type="text" id="place" placeholder="Place spent" name="place" required>
+    </div>
+    <div class="form-group">
+        <input type="number" id="amt" placeholder="Amount spent" name="amt" step="0.1" required>
+    </div>
+    <button type="submit" class="btn">Add Expense</button>
+</form>
+<br>
+<br>
+<form method="POST" action="/del">
+    <div class="form-group">
+        <input type="number" id="delexpno" placeholder="Expense number to delete" name="delno" step="1" required>
+    </div>
+    <button class="btn" type="submit">DELETE</button>
+</form>
+<div class="logoutclass">
+    <form class="logoutform" method="POST" action="/">
+        <button class="logout" type="submit">Log Out</button>
+    </form>
+</div>
+</div>
+<br>
+<br>
+<div class = "tab">
+<table id="expenseTable">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Amount (in $)</th>
+            <th>Place</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if expenses %}
+        {% for expense in expenses %}
+        <tr>
+            <td>{{ expense.exp_no }}</td>
+            <td>{{ expense.amount }}</td>
+            <td>{{ expense.place }}</td>
+            <td>{{ expense.exp_date }}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="4">No expenses recorded yet.</td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+<div class = "dropdown">
+<form method="POST" action="/total">
+    <div class = "form">
+    <label for="dropdown">Total spent in selected time interval:</label>
+    <select id="dropdown" name="dropdown" name = "dropdown"required>
+        <option value="select">Select Interval</option>
+        <option value="day">Day</option>
+        <option value="month">Month</option>
+        <option value="year">Year</option>
+    </select>
+    </div>
+    <h4>Total: {{ total }}</h4>
+    <button class = "finalbtn"type="submit">Submit</button>
+    </div>
+</form>
+</div>
+</div>
+<br>
+<br>
+{% endblock %}
